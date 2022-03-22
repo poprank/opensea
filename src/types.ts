@@ -66,6 +66,14 @@ export interface OsTrait {
 
 export interface OpenSeaAssetData extends OpenSeaAssetDataBase {
     readonly traits: OsTrait[];
+
+    readonly sell_orders: {
+        price: number;
+        current_price: string;
+        payment_token_contract: {
+            symbol: string;
+        };
+    }[];
 }
 
 /**
