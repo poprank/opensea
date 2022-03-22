@@ -21,7 +21,7 @@
     "rimraf": "^3.0.2"
   },
   "scripts": {
-    "build": "rimraf lib && npx tsc",
+    "build": "rimraf ./lib && npx tsc",
     "example": "cd example && npx ts-node example.ts"
   },
   "keywords": [],
