@@ -6,7 +6,7 @@ Additionally, we have an example section, where you can put in a collection's sl
 
 ## Example
 
-In order to run the example, you need to have Node / NPM installed. To run a typescript file, we suggest installing `ts-node` such that you can run `npx ts-node <filename>.ts`.
+In order to run the example, you need to have Node / NPM installed. To run a typescript file, we suggest installing `npx` such that you can run `npx ts-node <filename>.ts`.
 
 There are numerous how-to's online about this that can explain it better than we can.
 
