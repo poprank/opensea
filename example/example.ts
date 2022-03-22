@@ -27,6 +27,7 @@ const saveAllNftsFromOs = async (collection: string, openSeaKey?: string, savePa
     });
 };
 
+
 const exampleCalculateRarityOfAllNfts = (collection: string, savePath?: string)=>{
     const data = fs.readFileSync(getFilePath(collection, savePath), { encoding: 'utf8', flag: 'r' });
     const savedNfts: OpenSeaAssetData[] = JSON.parse(data);
