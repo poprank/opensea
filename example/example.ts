@@ -18,11 +18,9 @@ const getFilePath = (collection: string, savePath?: string)=>`${savePath ?? './'
 const saveAllNftsFromOs = async (collection: string, openSeaKey?: string, savePath?: string): Promise<void> => {
     const nfts = await getAllNFTsFromOs(collection, openSeaKey);
 
-    const nftsCleaned = nfts.map(nft => nft.image_url ? nft : undefined).filter(n => !!n);
+    const jsonString = JSON.stringify(nfts);
 
-    const jsonString = JSON.stringify(nftsCleaned);
-
-    await fs.writeFile(getFilePath(collection, savePath), jsonString, err => {
+    fs.writeFile(getFilePath(collection, savePath), jsonString, err => {
         if (err) {
             console.log('Error writing file', err);
         } else {
@@ -72,43 +70,43 @@ const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
     console.log('And your top 5 are:');
     top5.forEach(nft=>{console.log(`#${nft.rarityTraitSumRank} ID: ${nft.id}, name: ${nft.name}, url:${nft.imageUrl}`);});
 
-    let htmlStr = `<head>
-    <style type="text/css">
-        .nft{
-            display:flex;
-            flex-direction: column;
-            height:400;
-            width:300;
-        }
+    let htmlStr = `
+    <head>
+        <style type="text/css">
+            .nft{
+                display:flex;
+                flex-direction: column;
+                height:400;
+                width:300;
+            }
 
-        .nft-info{
-            color:#1F1F1F;
-            font-size: 36px;
-            margin-left: 16px;
-        }
+            .nft-info{
+                color:#1F1F1F;
+                font-size: 36px;
+                margin-left: 16px;
+            }
 
-        .rankings{
-            display:flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            flex-direction: row;
-        }
-    </style>
-</head>
-<body>
-    <div class="rankings">`;
+            .rankings{
+                display:flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                flex-direction: row;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="rankings">`;
     nftsWithRarityAndRank.slice(0, 100).forEach(n=>{
         htmlStr += `
             <div class="nft">
-            <span class="nft-info">${n.rarityTraitSumRank}</span>
-            <img src="${n.imageUrl}"></img>
-            <span class="nft-info">${n.name}</span>
-        </div>`;
+                <span class="nft-info">${n.rarityTraitSumRank}</span>
+                <img src="${n.imageUrl}"></img>
+                <span class="nft-info">${n.name}</span>
+            </div>`;
     });
 
     htmlStr += `
         </div>
-    </div>
     </body>`;
 
     fs.writeFile(`./${collection}-example.html`, htmlStr, err => {
