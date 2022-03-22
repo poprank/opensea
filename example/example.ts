@@ -43,7 +43,6 @@ const exampleCalculateRarityOfAllNfts = (collection: string, savePath?: string)=
 };
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
     if (!fs.existsSync(getFilePath(collection, savePath))) {
         const openSeaKey = process.env.OPENSEA_KEY;
@@ -57,7 +56,6 @@ const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
     });
 
     const nftsWithRarityAndRank = exampleCalculateRarityOfAllNfts(collection, savePath);
-
     const jsonString = JSON.stringify(nftsWithRarityAndRank);
 
     fs.writeFile(`./${collection}.json`, jsonString, err => {
