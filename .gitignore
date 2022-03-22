@@ -2,5 +2,13 @@ node_modules/
 dist/
 lib/
 
+.env
+
 # Ignore `yarn pack` output
 *.tgz
+
+example/*.json
+example/*.html
+
+# OSX stuff
+.DS_STORE
