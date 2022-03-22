@@ -2,5 +2,9 @@ node_modules/
 dist/
 lib/
 
+.env
+
 # Ignore `yarn pack` output
 *.tgz
+
+example/*.json
