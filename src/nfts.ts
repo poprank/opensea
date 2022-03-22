@@ -7,7 +7,6 @@ import { OpenSeaAssetData } from './types';
  * Parse an array of OS traits into our own, base type
  * @param traits
  * @param collection
- * @returns
  */
 export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: string): TraitBase[] => {
     const outTraits: TraitBase[] = [];
@@ -44,7 +43,6 @@ export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: s
  * @param savedNfts
  * @param collection
  * @param addMeta
- * @returns
  */
 export const parseAllNfts = (
     savedNfts: OpenSeaAssetData[],

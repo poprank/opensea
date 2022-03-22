@@ -1,9 +1,7 @@
 import { calculateRarity } from '@poprank/rankings';
 import * as dotenv from 'dotenv';
 import fs from 'fs';
-import { OpenSeaAssetData } from '../src';
-import { parseAllNfts } from '../src/nfts';
-import { getAllNFTsFromOs } from '../src/os';
+import { getAllNFTsFromOs, OpenSeaAssetData, parseAllNfts } from '../src';
 
 dotenv.config();
 

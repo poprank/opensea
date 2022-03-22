@@ -10,7 +10,6 @@ import { OpenSeaAssetData, OpenSeaAssetsResponseData, OS_NFT_NOT_FOUND, retriabl
  * @param id
  * @param openSeaKey
  * @param retryCount
- * @returns
  */
 export const getNFTInfo = async (collection: string, id: string, openSeaKey?: string, retryCount = 0): Promise<OpenSeaAssetData> => {
     try {
@@ -109,7 +108,6 @@ export const getNFTsFromOSPagination = async (collection: string, openSeaKey?: s
  * @param collection
  * @param tokens
  * @param openSeaKey
- * @returns
  */
 export const getNFTsNotInTokenList = async (collection: string, tokens: number[], openSeaKey?: string): Promise<OpenSeaAssetData[]> => {
     let nfts: OpenSeaAssetData[] = [];
@@ -146,7 +144,6 @@ export const getNFTsNotInTokenList = async (collection: string, tokens: number[]
  * that if there are still NFTs to be had, it gets them individually
  * @param collection
  * @param openSeaKey
- * @returns
  */
 export const getAllNFTsFromOs = async (collection: string, openSeaKey?: string): Promise<OpenSeaAssetData[]> => {
     let nfts: OpenSeaAssetData[] = [];
