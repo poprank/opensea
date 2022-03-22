@@ -35,7 +35,7 @@ const saveAllNftsFromOs = async (collection: string, openSeaKey?: string, savePa
     });
 };
 
-const exampleCalculateRarityOfAllNfts = async (collection: string, savePath?: string)=>{
+const exampleCalculateRarityOfAllNfts = (collection: string, savePath?: string)=>{
     const data = fs.readFileSync(getFilePath(collection, savePath), { encoding: 'utf8', flag: 'r' });
     const savedNfts: OpenSeaAssetData[] = JSON.parse(data);
     const { nfts } = parseAllNfts(savedNfts, collection, true);
@@ -44,17 +44,8 @@ const exampleCalculateRarityOfAllNfts = async (collection: string, savePath?: st
 
     nftsWithRarityAndRank.sort((a, b)=>a.rarityTraitSumRank - b.rarityTraitSumRank);
 
-    const top5 = nftsWithRarityAndRank.slice(0, 5);
-    console.log('And your top 5 are:');
-    top5.forEach(nft=>{console.log(`#${nft.rarityTraitSumRank} ID: ${nft.id}, name: ${nft.name}, url:${nft.imageUrl}`);});
 
-    const jsonString = JSON.stringify(nftsWithRarityAndRank);
-
-    fs.writeFile(`./${collection}.json`, jsonString, err => {
-        if (err) {
-            console.log('Error writing file', err);
-        }
-    });
+    return nftsWithRarityAndRank;
 };
 
 
@@ -71,7 +62,65 @@ const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
         setTimeout(resolve, 5000);
     });
 
-    exampleCalculateRarityOfAllNfts(collection, savePath);
+    const nftsWithRarityAndRank = exampleCalculateRarityOfAllNfts(collection, savePath);
+
+    const jsonString = JSON.stringify(nftsWithRarityAndRank);
+
+    fs.writeFile(`./${collection}.json`, jsonString, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
+
+    const top5 = nftsWithRarityAndRank.slice(0, 5);
+    console.log('And your top 5 are:');
+    top5.forEach(nft=>{console.log(`#${nft.rarityTraitSumRank} ID: ${nft.id}, name: ${nft.name}, url:${nft.imageUrl}`);});
+
+    let htmlStr = `<head>
+    <style type="text/css">
+        .nft{
+            display:flex;
+            flex-direction: column;
+            height:400;
+            width:300;
+        }
+
+        .nft-info{
+            color:#1F1F1F;
+            font-size: 36px;
+            margin-left: 16px;
+        }
+
+        .rankings{
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <div class="rankings">`;
+    nftsWithRarityAndRank.slice(0, 100).forEach(n=>{
+        htmlStr += `
+            <div class="nft">
+            <span class="nft-info">${n.rarityTraitSumRank}</span>
+            <img src="${n.imageUrl}"></img>
+            <span class="nft-info">${n.name}</span>
+        </div>`;
+    });
+
+    htmlStr += `
+        </div>
+    </div>
+    </body>`;
+
+    fs.writeFile(`./${collection}-example.html`, htmlStr, err => {
+        if (err) {
+            console.log('Error writing file', err);
+        }
+    });
+
 };
 
 saveAndCalculateRarity('boredapeyachtclub');

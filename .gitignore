@@ -8,3 +8,7 @@ lib/
 *.tgz
 
 example/*.json
+example/*.html
+
+# OSX stuff
+.DS_STORE
