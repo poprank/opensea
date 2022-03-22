@@ -10,7 +10,7 @@ In order to run the example, you need to have Node / NPM installed. To run a typ
 
 There are numerous how-to's online about this that can explain it better than we can.
 
-If you have an API key and want to use it, add a `.env` file in the `/example` folder w/:
+If you have an API key and want to use it, add a `.env` file in the `/example` folder that looks like below. Note that the API key is optional in this case, as OpenSea's /assets endpoint isn't api-key gated, specifying a key will just help with the rate limiting.
 ```
 OPENSEA_KEY=<key>
 ```
