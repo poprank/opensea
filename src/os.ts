@@ -8,6 +8,7 @@ import { OpenSeaAssetData, OpenSeaAssetsResponseData, OS_NFT_NOT_FOUND, retriabl
  * Gets the OS info for a specified NFT given a slug and a token id. Calls itself recursively if there are 429s or 503s
  * @param collection
  * @param id
+ * @param openSeaKey
  * @param retryCount
  * @returns
  */
@@ -59,6 +60,8 @@ export const getNFTInfo = async (collection: string, id: string, openSeaKey?: st
  * Gets the first 10,050 assets from an OpenSea `collection` via paginated requests.
  * OpenSea has a hidden `offset` limit of 10,000, so we can only get collections that have at most 10,050 items.
  * @see https://docs.opensea.io/reference/getting-assets
+ * @param collection
+ * @param openSeaKey
  */
 export const getNFTsFromOSPagination = async (collection: string, openSeaKey?: string): Promise<OpenSeaAssetData[]> => {
     const limit = 50;
@@ -105,9 +108,8 @@ export const getNFTsFromOSPagination = async (collection: string, openSeaKey?: s
  * NFTs via pagination
  * @param collection
  * @param tokens
- * @param contract_address
+ * @param openSeaKey
  * @returns
- // TODO: FIX THE ASSUMPTION THAT TOKEN IDS ARE SEQUENTIAL
  */
 export const getNFTsNotInTokenList = async (collection: string, tokens: number[], openSeaKey?: string): Promise<OpenSeaAssetData[]> => {
     let nfts: OpenSeaAssetData[] = [];
@@ -143,6 +145,7 @@ export const getNFTsNotInTokenList = async (collection: string, tokens: number[]
  * Get all of a collection's NFTs from OS. Gets the first 10,050 via pagination, but as the max offset is 10,000, after
  * that if there are still NFTs to be had, it gets them individually
  * @param collection
+ * @param openSeaKey
  * @returns
  */
 export const getAllNFTsFromOs = async (collection: string, openSeaKey?: string): Promise<OpenSeaAssetData[]> => {

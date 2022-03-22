@@ -68,7 +68,7 @@ const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
     console.log('And your top 5 are:');
     top5.forEach(nft=>{console.log(`#${nft.rarityTraitSumRank} ID: ${nft.id}, name: ${nft.name}, url:${nft.imageUrl}`);});
 
-    let htmlStr = `
+    const htmlStr = `
     <head>
         <style type="text/css">
             .nft{
@@ -93,17 +93,14 @@ const saveAndCalculateRarity = async (collection: string, savePath?: string)=>{
         </style>
     </head>
     <body>
-        <div class="rankings">`;
-    nftsWithRarityAndRank.slice(0, 100).forEach(n=>{
-        htmlStr += `
+        <div class="rankings">
+        ${nftsWithRarityAndRank.slice(0, 100).map(n=>`
             <div class="nft">
                 <span class="nft-info">${n.rarityTraitSumRank}</span>
                 <img src="${n.imageUrl}"></img>
                 <span class="nft-info">${n.name}</span>
-            </div>`;
-    });
-
-    htmlStr += `
+            </div>
+            `)}
         </div>
     </body>`;
 
