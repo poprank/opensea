@@ -9,7 +9,8 @@
         "rootDir": "src",
         "outDir": "lib", // output compiled js, d.ts, and source map to dist folder
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "types":["node"]
     },
     "exclude": ["example/*"]
 }
