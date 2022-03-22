@@ -19,11 +19,7 @@ const saveAllNftsFromOs = async (collection: string, openSeaKey?: string, savePa
     const nfts = await getAllNFTsFromOs(collection, openSeaKey);
 
     const nftsCleaned = nfts.map(nft => nft.image_url ? nft : undefined).filter(n => !!n);
-    // if (nfts.length !== nftsCleaned.length) {
-    //     console.log("SOME NFTS ARE UNREVEALED!!!! comment this out to save the NFTs, then update.ts will update all of their metadata");
-    //     return;
-    // }
-    // console.log(nftsCleaned.find(n => n?.token_id === '272'));
+
     const jsonString = JSON.stringify(nftsCleaned);
 
     await fs.writeFile(getFilePath(collection, savePath), jsonString, err => {
