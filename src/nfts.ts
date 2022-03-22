@@ -19,7 +19,7 @@ export const parseNftTraits = (traits: OpenSeaAssetData['traits'], col: string):
         const typeValue = n.trait_type;
         let displayType: DisplayType = n.display_type === 'number' ? 'number' : null;
 
-        // OpenSea seem to have inconsistent `display_type`s, where sometimes a 'number' is still null.
+        // OpenSea seem to have inconsistent `display_type`s, where sometimes what should be a 'number' is still null.
         // Manually specify which traits are `display_type:number` here in the meantime
         if (col === 'rotae-by-nadieh-bremer') {
             if (typeValue === 'wheels' || typeValue === 'symmetry')

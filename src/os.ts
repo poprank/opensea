@@ -17,10 +17,10 @@ export const getNFTInfo = async (collection: string, id: string, openSeaKey?: st
             headers: openSeaKey ? { 'X-API-KEY': openSeaKey } : undefined,
             params: { collection, token_ids: id },
         })).data;
-        console.log(`Retrieved data for ${id}`);
+        process.stdout.write(`🐿️ [${new Date().toLocaleString()}] Retrieved data for NFT ${id}\r`); // Overwrites line
 
         if (!nft.assets || nft.assets.length === 0){
-            const error = new Error("OS's NFT endpoint returned a 404");
+            const error = new Error("OS's NFT endpoint returned nothing");
             error.name = OS_NFT_NOT_FOUND;
 
             throw error;
@@ -134,7 +134,6 @@ export const getNFTsNotInTokenList = async (collection: string, tokens: number[]
             }
         }
 
-        process.stdout.write(`🐿️ [${new Date().toLocaleString()}] Retrieved data for NFT ${i}\r`); // Overwrites line
     }
 
     return nfts;
@@ -151,6 +150,7 @@ export const getAllNFTsFromOs = async (collection: string, openSeaKey?: string):
     nfts = nfts.concat(await getNFTsFromOSPagination(collection, openSeaKey));
 
     const idsAlready = nfts.map(n => parseInt(n.token_id));
+    // Skipping the IDs of the NFTs we already have, go from 0 ++ until we hit a 404
     nfts = nfts.concat(await getNFTsNotInTokenList(collection, idsAlready, openSeaKey));
     console.log(idsAlready.length);
 
