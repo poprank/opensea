@@ -4,6 +4,9 @@ Hello, welcome to PopRank's OpenSea package! In this package, we have logic that
 
 Additionally, we have an example section, where you can put in a collection's slug, and then we'll pull every NFT for that collection from OpenSea, transform it, calculate rarity, and print it to an html file so you can see the end result!
 
+Please join us in our [Discord](https://discord.com/invite/9R5RzdUbXb) too, we'd love to chat with you
+
+
 ## Example
 
 In order to run the example, you need to have Node / NPM installed. To run a typescript file, we suggest installing `npx` such that you can run `npx ts-node <filename>.ts`.
@@ -15,12 +18,8 @@ If you have an API key and want to use it, add a `.env` file in the `/example` f
 OPENSEA_KEY=<key>
 ```
 
-Now just go to our `/example` folder, run `npx ts-node example.ts`, and voila! It'll take some time to get all NFTs if it's for a 5k+ collection, so we recommend grabbing a cup of tea.
+Now just go to our `/example` folder, run `npx ts-node example.ts`, and voila! It'll take some time to get all NFTs if it's for a 1k+ collection, so we recommend grabbing a cup of tea.
 
 Once it's finished running, it'll save the output in case you want to use the results multiple times without having to make hundreds of requests to OS.
 
-We then transform it into our shape and calculate the rarity of all NFTs in the collection, saving that output too.
-
-Finally, we write the top 100 NFTs to a very simple HTML page, so you can visually see the rarity rankings without any app / complex work :).
-
-Enjoy!
+We then transform it into our shape and save the result. If you want to calculate the rarity of the newly-transformed NFTs, you can go to our [@poprank/rankings](https://www.npmjs.com/package/@poprank/rankings) package, drop the JSON file there, and use our `example.ts`.

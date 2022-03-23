@@ -52,10 +52,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@poprank/rankings@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@poprank/rankings/-/rankings-1.1.0.tgz#dc1a0bc913ede3da518aa1a269a62afbe6037fbe"
-  integrity sha512-JIYqKJoSdBCral5ucnvue98nx01KSf4l6HwdYnhe7wqDtre2m2XzEiZVL6SBpK2tmehWOM8FXeME+5ytUa5pRw==
+"@poprank/rankings@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@poprank/rankings/-/rankings-1.1.2.tgz#ce3064c567aaad761d996312a3969e3483efb9f0"
+  integrity sha512-AKmHqa4txEi2veMOybJBX1nSNoRTp6GOKOeTMIqiEp0P2h9EoRTeNzOHAmI7Dwel2slNcH8OcgIvYwRsCPYJKA==
 
 "@types/json-schema@^7.0.9":
   version "7.0.10"
