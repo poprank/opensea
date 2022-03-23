@@ -1,6 +1,6 @@
 {
   "name": "@poprank/opensea",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "PopRank's OpenSea wrappers + transformers",
   "main": "lib/index.js",
   "files": [
@@ -11,8 +11,9 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "license": "MIT",
   "dependencies": {
-    "@poprank/rankings": "1.1.0",
+    "@poprank/rankings": "1.1.2",
     "axios": "^0.21.1"
   },
   "devDependencies": {
@@ -26,9 +27,11 @@
     "typescript": "~4.5.2"
   },
   "scripts": {
+    "build": "yarn clean && yarn tsc",
+    "ci": "yarn tsc",
     "clean": "rimraf ./lib",
-    "build": "npx tsc",
-    "example": "cd example && npx ts-node example.ts"
+    "example": "cd example && npx ts-node example.ts",
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": {

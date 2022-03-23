@@ -1,4 +1,4 @@
-import { calcMetaTraits, DisplayType, NftInit, TraitBase } from '@poprank/rankings';
+import { DisplayType, NftInit, TraitBase } from '@poprank/rankings';
 import { OpenSeaAssetData } from './types';
 
 // Methods to transform OS NFTs into our own shape
@@ -47,16 +47,11 @@ export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: s
 export const parseAllNfts = (
     savedNfts: OpenSeaAssetData[],
     collection: string,
-    addMeta?: boolean,
 ) => {
     const nfts: NftInit[] = [];
     savedNfts.forEach((nft: OpenSeaAssetData) => {
         const nftBaseTraits: TraitBase[] = parseNftTraits(nft.traits, collection);
         const nftOutTraits: TraitBase[] = [...nftBaseTraits.slice()];
-
-        // Add all the base traits to the traits we'll add to the NFT, and calculate all "matches"
-        nftOutTraits.push(...calcMetaTraits(nftBaseTraits, collection, addMeta));
-
 
         nfts.push({
             collection: collection,
