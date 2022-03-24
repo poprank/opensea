@@ -1,6 +1,6 @@
 {
   "name": "@poprank/opensea",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "PopRank's OpenSea wrappers + transformers",
   "main": "lib/index.js",
   "files": [
