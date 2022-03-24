@@ -28,7 +28,7 @@ export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: s
         outTraits.push({
             typeValue: typeValue,
             value,
-            category: 'Traits',
+            category: typeValue.toLowerCase() !== 'none' ? 'Traits' : 'None',
             displayType,
         });
     });
