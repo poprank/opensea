@@ -1,11 +1,15 @@
 {
   "name": "@poprank/opensea",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "PopRank's OpenSea wrappers + transformers",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poprank/opensea"
+  },
   "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public",
