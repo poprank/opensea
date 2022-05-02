@@ -67,14 +67,7 @@ export const getNFTsFromOSPagination = async (collection: string, openSeaKey?: s
 
     console.log(`Retrieving NFTs for ${collection}`);
     let nfts: OpenSeaAssetData[] = [];
-    const waitAfter429 = 5000;
-    let lastThrottle = Date.now() - waitAfter429;
     for (let offset = 0; offset <= OS_MAX_REQUEST_OFFSET; offset += limit) {
-        if (Date.now() - lastThrottle < waitAfter429) {
-            offset -= limit;
-            continue;
-        }
-
         try {
             const response = (await axios.get<OpenSeaAssetsResponseData>(`${OS_API_URL}/assets`, {
                 headers: openSeaKey ? { 'X-API-KEY': openSeaKey } : undefined,
@@ -91,8 +84,10 @@ export const getNFTsFromOSPagination = async (collection: string, openSeaKey?: s
         } catch (err: any) {
             console.error('error:' + err);
             if (retriableOsHttpCodes.includes(err.response.status)) {
-                lastThrottle = Date.now();
                 offset -= limit;
+                await new Promise((resolve) => {
+                    setTimeout(resolve, 5000);
+                });
             }
         }
     }
