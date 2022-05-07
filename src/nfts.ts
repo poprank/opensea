@@ -59,7 +59,7 @@ export const parseAllNfts = (
             name: nft.name ?? `#${nft.token_id}`,
             address: nft.asset_contract.address,
             imageUrl: nft.image_url,
-            metadataUrl: nft.token_metadata,
+            metadataUrl: nft.token_metadata.includes('data:application') ? null : nft.token_metadata,
             rating: 1200,
             timesSeen: 0,
             timesWon: 0,
