@@ -1,6 +1,6 @@
 {
   "name": "@poprank/opensea",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "PopRank's OpenSea wrappers + transformers",
   "main": "lib/index.js",
   "files": [
@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@poprank/rankings": "1.1.16",
+    "@poprank/rankings": "1.1.18",
     "axios": "^0.21.1"
   },
   "devDependencies": {
