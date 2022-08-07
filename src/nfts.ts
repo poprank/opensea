@@ -60,11 +60,6 @@ export const parseAllNfts = (
             address: nft.asset_contract.address,
             imageUrl: nft.image_url,
             metadataUrl: !nft.token_metadata || nft.token_metadata.includes('data:application') ? null : nft.token_metadata,
-            rating: 1200,
-            timesSeen: 0,
-            timesWon: 0,
-            timesDrawn: 0,
-            aestheticRank: 0,
             traits: nftOutTraits,
         });
     });
