@@ -1,4 +1,4 @@
-import { DisplayType, NftInit, TraitBase } from '@poprank/rankings';
+import { DisplayType, NftWithInitialTraits, TraitInit } from '@poprank/sdk';
 import { OpenSeaAssetData } from './types';
 
 // Methods to transform OS NFTs into our own shape
@@ -8,8 +8,8 @@ import { OpenSeaAssetData } from './types';
  * @param traits
  * @param collection
  */
-export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: string): TraitBase[] => {
-    const outTraits: TraitBase[] = [];
+export const parseNftTraits = (traits: OpenSeaAssetData['traits'], collection: string): TraitInit[] => {
+    const outTraits: TraitInit[] = [];
 
     traits.forEach(n => {
         // Bastard Gan Punks have some real funky encoding for the "CURSED" punk
@@ -48,10 +48,10 @@ export const parseAllNfts = (
     savedNfts: OpenSeaAssetData[],
     collection: string,
 ) => {
-    const nfts: NftInit[] = [];
+    const nfts: NftWithInitialTraits[] = [];
     savedNfts.forEach((nft: OpenSeaAssetData) => {
-        const nftBaseTraits: TraitBase[] = parseNftTraits(nft.traits, collection);
-        const nftOutTraits: TraitBase[] = [...nftBaseTraits.slice()];
+        const nftBaseTraits: TraitInit[] = parseNftTraits(nft.traits, collection);
+        const nftOutTraits: TraitInit[] = [...nftBaseTraits.slice()];
 
         nfts.push({
             collection: collection,
@@ -63,6 +63,7 @@ export const parseAllNfts = (
             rating: 1200,
             timesSeen: 0,
             timesWon: 0,
+            timesDrawn: 0,
             aestheticRank: 0,
             traits: nftOutTraits,
         });
